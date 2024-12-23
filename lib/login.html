@@ -124,34 +124,62 @@
     <div class="login-container">
         <!-- Logo Section -->
         <div class="logo">
-            <img src="C:\Users\Acer\Downloads\LOGO Tam-Roi-Review.png"  alt="Tam Roi Review Logo">
+            <img src="C:\Users\Acer\Documents\GitHub\Final\TamRoiReview\flutter_application_1\lib\LOGO Tam-Roi-Review.png" alt="Tam Roi Review Logo">
         </div>
 
         <!-- Login Form Section -->
         <div class="login-form">
             <h2>เข้าสู่ระบบ</h2>
-            <form>
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="email">อีเมล</label>
-                    <input type="email" id="email" placeholder="กรอกอีเมล">
+                    <input type="email" id="email" placeholder="กรอกอีเมล" required>
                 </div>
                 <div class="form-group">
                     <label for="password">รหัสผ่าน</label>
-                    <input type="password" id="password" placeholder="กรอกรหัสผ่าน">
+                    <input type="password" id="password" placeholder="กรอกรหัสผ่าน" required>
                 </div>
-                <button type="button" class="btn-login" onclick="alert('เข้าสู่ระบบสำเร็จ!')">เข้าสู่ระบบ</button>
+                <button type="submit" class="btn-login">เข้าสู่ระบบ</button>
             </form>
             <div class="or">หรือ</div>
             <div class="social-login">
-                <button onclick="alert('เข้าสู่ระบบด้วย Google')">
-                    <img src="ไอคอนกุเกิ้ล.png" alt="Google"> Google
+                <button id="googleLogin">
+                    <img src="C:\Users\Acer\Documents\GitHub\Final\TamRoiReview\flutter_application_1\lib\LOGO_Google.png" alt="Google"> Google
                 </button>
-                <button onclick="alert('เข้าสู่ระบบด้วย Facebook')">
-                    <img src="c:\Users\HP\Downloads\ไอคอนเฟสบุ๊ค.png" alt="Facebook"> Facebook
+                <button id="facebookLogin">
+                    <img src="C:\Users\Acer\Documents\GitHub\Final\TamRoiReview\flutter_application_1\lib\LOGO_Facebook.png" alt="Facebook"> Facebook
                 </button>
             </div>
         </div>
     </div>
+
+    <script>
+        // Redirect on manual login
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            if (email && password) {
+                // Call to backend to authenticate user
+                alert("เข้าสู่ระบบสำเร็จ!");
+                window.location.href = "category-selection.html"; // Redirect to category page
+            }
+        });
+
+        // Handle Google Login
+        document.getElementById("googleLogin").addEventListener("click", function () {
+            // Replace with Google API login implementation
+            alert("กำลังเข้าสู่ระบบด้วย Google");
+            window.location.href = "https://accounts.google.com"; // Redirect to Google
+        });
+
+        // Handle Facebook Login
+        document.getElementById("facebookLogin").addEventListener("click", function () {
+            // Replace with Facebook API login implementation
+            alert("กำลังเข้าสู่ระบบด้วย Facebook");
+            window.location.href = "https://www.facebook.com/login/"; // Redirect to Facebook
+        });
+    </script>
 </body>
 
 </html>
