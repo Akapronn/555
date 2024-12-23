@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tam Roi Review</title>
+    <!-- Font Awesome CDN สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        /* Header */
+        header {
+            background-color: #fef602;
+            padding: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        header img {
+            height: 70px;
+            float: left; /* ให้โลโก้อยู่ทางซ้าย */
+        }
+
+        /* จัดการตำแหน่งของไอคอนใน header */
+    .header-icons {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        gap: 15px;
+    }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #f8e5a6;
+            padding: 0px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 6px 0;
+        }
+
+        /* Posts Grid */
+        .posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .post {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .post img {
+            width: 100%;
+            height: auto;
+        }
+
+        .post-content {
+            padding: 15px;
+        }
+
+        .post-content h3 {
+            font-size: 1.2em;
+            margin: 0 0 10px;
+        }
+
+        .post-content p {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+        }
+
+        .post-footer div {
+            color: #555;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #fef602;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        .footer button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Icons in Header */
+        .header-icons {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-icons i {
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Add Hover Effects */
+        nav a:hover {
+            color: #fef602;
+        }
+
+        @media (max-width: 768px) {
+            .posts {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                margin: 0 10px;
+                font-size: 16px;
+            }
+
+            header img {
+                height: 50px;
+            }
+
+            .header-icons i {
+                font-size: 20px;
+            }
+
+            .footer {
+                padding: 10px;
+            }
+
+            .footer button {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <img src="C:\Users\Acer\Downloads\LOGO Tam-Roi-Review.png" alt="Tam Roi Review Logo">
+    <div class="header-icons">
+        <i class="fas fa-home"></i>
+        <i class="fas fa-search"></i>
+        <i class="fas fa-camera"></i>
+        <i class="fas fa-bell"></i>
+        <i class="fas fa-user"></i>
+        <i class="fas fa-bars"id="menu-toggle"></i> <!-- เพิ่มฟังก์ชันคลิก -->
+    </div>
+    <!-- เมนู Dropdown -->
+<div class="dropdown-menu" id="dropdown-menu">
+    <a href="logout.html">ออกจากระบบ</a>
+    <a href="manage_users.html">จัดการผู้ใช้</a>
+</div>
+
+</header>
+
+    <!-- แถบ "ติดตาม" และ "สำหรับคุณ" -->
+    <div class="follow-bar">
+        <button class="active" id="follow-btn">ติดตาม</button>
+        <button id="foryou-btn">สำหรับคุณ</button>
+    </div>
+    <script>
+        const followBtn = document.getElementById("follow-btn");
+        const forYouBtn = document.getElementById("foryou-btn");
+    
+        followBtn.addEventListener("click", () => {
+            followBtn.classList.add("active");
+            forYouBtn.classList.remove("active");
+        });
+    
+        forYouBtn.addEventListener("click", () => {
+            forYouBtn.classList.add("active");
+            followBtn.classList.remove("active");
+        });
+    </script>
+
+<style>
+/* ปรับขนาดโลโก้ */
+header .logo {
+    max-height: 60px; /* จำกัดความสูงให้พอดี */
+    width: auto; /* คงอัตราส่วน */
+    margin-right: 10px; /* เพิ่มช่องว่างระหว่างโลโก้กับเนื้อหา */
+}
+
+/* เมนู Dropdown */
+.dropdown-menu {
+    display: none; /* ซ่อนเมนูไว้ก่อน */
+    position: absolute;
+    top: 80px; /* ระยะจากขอบบน */
+    right: 20px; /* ชิดขอบขวา */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 150px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: #dbf8a6;
+}
+
+/* สำหรับหน้าจอมือถือ */
+@media (max-width: 768px) {
+    .logo {
+        max-height: 50px; /* ลดขนาดโลโก้สำหรับหน้าจอเล็ก */
+    }
+
+    .header-icons i {
+        font-size: 20px;
+    }
+}
+</style>
+
+<script>
+// ฟังก์ชันเมนู Dropdown
+document.getElementById('menu-toggle').addEventListener('click', function () {
+    const menu = document.getElementById('dropdown-menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+});
+</script>
+    </div>
+</header>
+
+<!-- Navbar -->
+<nav>
+    <a href="#">อาหาร</a>
+    <a href="#">แฟชั่น</a>
+    <a href="#">การท่องเที่ยว</a>
+    <a href="#">สุขภาพ</a>
+    <a href="#">การตกแต่งบ้าน</a>
+    <a href="#">สกินแคร์</a>
+    <a href="#">ถ่ายรูป</a>
+    <a href="#">สัตว์เลี้ยง</a>
+    <a href="#">อาชีพ</a>
+</nav>
+
+<!-- Posts Grid -->
+<section class="posts">
+    <div class="post">
+        <img src="https://via.placeholder.com/300x200" alt="Post Image">
+        <div class="post-content">
+            <h3>สูตรหมูทอดทำง่าย</h3>
+            <p>แนะนำสูตรอาหารยอดนิยม ทำง่ายได้ที่บ้าน</p>
+        </div>
+        <div class="post-footer">
+            <div>❤️ 1.4k</div>
+            <div>💬 17</div>
+        </div>
+    </div>
+    <div class="post">
+        <img src="https://via.placeholder.com/300x200" alt="Post Image">
+        <div class="post-content">
+            <h3>เมนูอาหารเพื่อสุขภาพ</h3>
+            <p>รวบรวมอาหารเพื่อสุขภาพที่ทำได้ง่ายๆ</p>
+        </div>
+        <div class="post-footer">
+            <div>❤️ 857</div>
+            <div>💬 29</div>
+        </div>
+    </div>
+    <div class="post">
+        <img src="https://via.placeholder.com/300x200" alt="Post Image">
+        <div class="post-content">
+            <h3>เมนูแนะนำสำหรับลดน้ำหนัก</h3>
+            <p>อาหารสำหรับผู้ที่ต้องการลดน้ำหนัก</p>
+        </div>
+        <div class="post-footer">
+            <div>❤️ 1.1k</div>
+            <div>💬 42</div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* ปรับปุ่ม + โพสต์ใหม่ */
+    .add-post-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #fef602;
+        color: black;
+        font-size: 24px;
+        width: 60px;
+        height: 60px;
+        border-radius: 15px;
+        border: 3px solid black;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+    
+    .add-post-button:hover {
+        transform: scale(1.1);
+    }
+    </style>
+    
+    <!-- ปุ่ม + โพสต์ใหม่ -->
+    <div class="add-post-button">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <style>
+        /* แถบสีขาวที่มี "ติดตาม" และ "สำหรับคุณ" */
+        .follow-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #ddd;
+            padding: 1px 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    
+        .follow-bar button {
+            background-color: transparent;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+    
+        .follow-bar button:hover {
+            background-color: #fef602;
+            color: #fff;
+            border-radius: 5px;
+        }
+    
+        .follow-bar .active {
+            background-color: #fef602;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+     
+</body>
+</html>
